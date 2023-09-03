@@ -1,0 +1,39 @@
+<ion-grid>
+  <ion-row class="ion-justify-content-between" style="height: 10%;">
+    <ion-col size="3">
+      <img src="../../../../assets/images/bogota.svg" alt="">
+    </ion-col>
+    <ion-col size="3" class="ion-padding-top">
+      <img src="../../../../assets/images/umv.png" alt="">
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-align-items-center" style="height: 90%;">
+    <ion-col>
+      <ion-row class="ion-justify-content-center">
+        <img src="../../../../assets/images/umv.png" alt="">
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-padding-top">
+        <ion-col>
+          <ion-title class="ion-text-center">SI CAPITAL - SAI</ion-title>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center ion-padding-top">
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+          <ion-card>
+            <ion-card-content>
+              <ion-item>
+                <ion-input formControlName="username" label="Usuario" labelPlacement="floating" type="email"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="password" label="Contraseña" labelPlacement="floating" type="password"></ion-input>
+              </ion-item>
+            </ion-card-content>
+            <div class="ion-padding-bottom ion-text-center">
+              <ion-button [disabled]="!this.loginForm.valid" type="submit">Iniciar sesión</ion-button>
+            </div>
+          </ion-card>
+        </form>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+</ion-grid>
