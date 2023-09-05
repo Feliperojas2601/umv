@@ -24,3 +24,11 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.item-divider {
+  border: 1px solid var(--ion-color-primary);
+}
+
+.border-medium {
+  border: 1px solid var(--ion-color-medium);
+}

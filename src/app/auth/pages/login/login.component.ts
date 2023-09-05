@@ -23,6 +23,6 @@ export class LoginComponent implements OnInit {
 
   public loginUser(): void {
     this.loginFormValue = this.loginForm.value as LoginForm;
-    this.router.navigate(['/umv']);
+    this.router.navigate(['/umv/consult']);
   }
 }
