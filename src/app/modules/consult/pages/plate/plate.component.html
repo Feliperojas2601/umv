@@ -1,0 +1,36 @@
+<ion-card>
+  <ion-card-header class="ion-align-items-center ion-justify-content-center">
+    <ion-card-title>Consulta por placa</ion-card-title>
+  </ion-card-header>
+  <div class="item-divider"></div>
+  <ion-card-content>
+    <form [formGroup]="plateForm" (ngSubmit)="consultPlate()">
+      <ion-grid>
+        <ion-row class="ion-align-items-center border-medium">
+          <ion-col size="9">
+            <img src="../../../../assets/images/barcode.png" alt="">
+          </ion-col>
+          <ion-col size="3">
+            <ion-button fill="clear" (click)="addPhotoToGallery()">
+              <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-input formControlName="plate" label="Código de la placa" labelPlacement="floating" type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <div class="ion-padding-bottom ion-text-center">
+              <ion-button [disabled]="!this.plateForm.valid" type="submit">Consultar</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card-content>
+</ion-card>
