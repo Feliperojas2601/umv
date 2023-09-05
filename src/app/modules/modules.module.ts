@@ -4,7 +4,7 @@ import { ModulesComponent } from './modules.component';
 import { ConsultModule } from './consult/consult.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonMenu, IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,6 @@ import { IonicModule } from '@ionic/angular';
     ConsultModule,
     SharedModule, 
     RouterModule,
-  ]
+  ], 
 })
 export class ModulesModule { }

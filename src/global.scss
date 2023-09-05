@@ -32,3 +32,8 @@
 .border-medium {
   border: 1px solid var(--ion-color-medium);
 }
+
+.error-form-message {
+  color: var(--ion-color-primary) !important; 
+  font-size: 12px !important;
+}

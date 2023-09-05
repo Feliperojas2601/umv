@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modules',
@@ -7,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModulesComponent  implements OnInit {
 
-  constructor() { }
+  constructor( 
+    private ionMenuController: MenuController,
+    private router: Router
+  ) { }
 
   ngOnInit() {}
+
+  navigateTo(path: string): void {
+    this.ionMenuController.close();
+    this.router.navigate([path]);
+  }
 
 }

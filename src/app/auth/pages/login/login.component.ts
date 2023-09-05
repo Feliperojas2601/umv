@@ -25,4 +25,9 @@ export class LoginComponent implements OnInit {
     this.loginFormValue = this.loginForm.value as LoginForm;
     this.router.navigate(['/umv/consult']);
   }
+
+  log() {
+    console.log(this.loginForm.get('username')?.invalid);
+    console.log(this.loginForm.get('username')?.touched);
+  }
 }

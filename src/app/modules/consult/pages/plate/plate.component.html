@@ -25,6 +25,15 @@
         </ion-row>
         <ion-row>
           <ion-col size="12">
+            <ion-item lines="none" *ngIf="this.plateForm.get('plate')?.invalid && this.plateForm.get('plate')?.touched">
+              <ion-label class="error-form-message">
+                El código de la placa es requerido
+              </ion-label>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
             <div class="ion-padding-bottom ion-text-center">
               <ion-button [disabled]="!this.plateForm.valid" type="submit">Consultar</ion-button>
             </div>
