@@ -12,7 +12,7 @@ export class PhotoService {
     //private barcodeScanner: BarcodeScanner
   ) {}
 
-  public async addNewToGallery(): Promise<string | void> {
+  public async scan(): Promise<string | void> {
     let capturedPhoto: Photo;
     try {
       capturedPhoto = await Camera.getPhoto({
