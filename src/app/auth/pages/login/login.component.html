@@ -24,7 +24,7 @@
           <ion-card>
             <ion-card-content>
               <ion-item>
-                <ion-input (ionInput)="log()" formControlName="username" label="Usuario" labelPlacement="floating" type="email"></ion-input>
+                <ion-input formControlName="username" label="Usuario" labelPlacement="floating" type="email"></ion-input>
               </ion-item>
               <ion-item lines="none" *ngIf="this.loginForm.get('username')?.invalid && this.loginForm.get('username')?.touched">
                 <ion-label class="error-form-message">

@@ -14,6 +14,8 @@ export class PlateComponent  implements OnInit {
 
   public plateFormValue!: string;
 
+  public text: string | void = '';
+
   constructor(
     private fb: FormBuilder, 
     private router: Router, 
@@ -32,6 +34,9 @@ export class PlateComponent  implements OnInit {
   }
 
   public async addPhotoToGallery(): Promise<void> {
-    await this.photoService.addNewToGallery();
+    this.text = await this.photoService.addNewToGallery();
+    this.plateForm.patchValue({
+      plate: this.text
+    });
   }
 }
