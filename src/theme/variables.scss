@@ -86,12 +86,15 @@
    */
 
   body {
-    --ion-color-primary: #ff4961;
+    //--ion-color-primary: #ff4961;
+    --ion-color-primary: #BED000;
     --ion-color-primary-rgb: 255, 73, 97;
     --ion-color-primary-contrast: #000000;
     --ion-color-primary-contrast-rgb: 0, 0, 0;
-    --ion-color-primary-shade: #e04055;
-    --ion-color-primary-tint: #ff5b71;
+    // --ion-color-primary-shade: #e04055;
+    --ion-color-primary-shade: #A8B800;
+    // --ion-color-primary-tint: #ff5b71;
+    --ion-color-primary-tint: #D0E000;
 
     --ion-color-secondary: #50c8ff;
     --ion-color-secondary-rgb: 80,200,255;
