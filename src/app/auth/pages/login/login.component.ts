@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginForm } from '../../interfaces/login-form.interface';
+import { AuthService } from '../../services/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,12 @@ export class LoginComponent implements OnInit {
   public loginForm!: FormGroup; 
   public loginFormValue!: LoginForm; 
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router, 
+    private authService: AuthService,
+    private alertController: AlertController
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -23,6 +30,36 @@ export class LoginComponent implements OnInit {
 
   public loginUser(): void {
     this.loginFormValue = this.loginForm.value as LoginForm;
-    this.router.navigate(['/umv/consult']);
+    this.authService.login(this.loginFormValue).subscribe({
+      next: (response) => {
+        this.loginForm.reset();
+        this.router.navigate(['/umv/consult']);
+      },
+      error: async (error) => {
+        this.loginForm.reset();
+        const message = JSON.parse(error.error.respuesta[0].json).msgError;
+        await this.presentErrorAlert(this.setMessage(message));
+      }
+    });
   }
+
+  public async presentErrorAlert(message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  public setMessage(message: string){
+    if (message === 'USUARIO NO EXISTE EN CALIOPE'){
+      return 'El usuario no existe en el sistema.';
+    } else if (message === 'Login Fallido Usuario o clave incorrectos.'){
+      return 'Nombre de usuario o contraseña incorrectos.';
+    } else {
+      return 'Error desconocido.';
+    }
+  }
+
 }
