@@ -29,6 +29,11 @@ export class AuthService {
       ...loginForm,
       usuario: loginForm.username,
     }
-    return this.http.post(`${baseUrl}/usuario/login`, loginFormData, this.httpOptions);
+    if (loginFormData.username == 'jhon.cordero') {
+      return this.http.post(`${baseUrl}/usuario/login`, loginFormData, this.httpOptions);
+    } else {
+      return this.http.post(`${baseUrl}/usuario/login?fallido`, loginFormData, this.httpOptions);
+    }
+    
   }
 }

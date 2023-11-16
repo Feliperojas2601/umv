@@ -28,11 +28,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public loginUser(): void {
+  public async loginUser(): Promise<void> {
     this.loginFormValue = this.loginForm.value as LoginForm;
     this.authService.login(this.loginFormValue).subscribe({
       next: (response) => {
         this.loginForm.reset();
+        console.log(response);
+        this.presentSuccessAlert(response.msgError);
         this.router.navigate(['/umv/consult']);
       },
       error: async (error) => {
@@ -40,7 +42,8 @@ export class LoginComponent implements OnInit {
         this.loginForm.reset();
         let message = '';
         if (error.status === 401){
-          message = JSON.parse(error.error.respuesta[0].json).msgError;
+          //message = JSON.parse(error.error.respuesta[0].json).msgError;
+          message = error.error.msgError;
         } else if (error.status === 0) {
           message = error.message;
         } 
@@ -58,10 +61,19 @@ export class LoginComponent implements OnInit {
     await alert.present();
   }
 
+  public async presentSuccessAlert(message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   public setMessage(message: string){
     if (message === 'USUARIO NO EXISTE EN CALIOPE'){
       return 'El usuario no existe en el sistema.';
-    } else if (message === 'Login Fallido Usuario o clave incorrectos.'){
+    } else if (message === 'Login Fallido Usuario o clave incorrectos.' || message === 'Usuario y/o clave incorrecta'){
       return 'Nombre de usuario o contraseña incorrectos.';
     } else if (message === 'Http failure response for https://testfront.umv.gov.co/SiCapital-backend/api/usuario/login: 0 Unknown Error') {
       return 'CORS error.';
