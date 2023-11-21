@@ -14,9 +14,6 @@ export class AuthService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin':'*',
-      'Access-Control-Allow-Methods':'POST,GET,OPTIONS,DELETE',
-      'Access-Control-Allow-Headers':'x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN'
     }),
   };
 
@@ -29,11 +26,6 @@ export class AuthService {
       ...loginForm,
       usuario: loginForm.username,
     }
-    if (loginFormData.username == 'jhon.cordero') {
-      return this.http.post(`${baseUrl}/usuario/login`, loginFormData, this.httpOptions);
-    } else {
-      return this.http.post(`${baseUrl}/usuario/login?fallido`, loginFormData, this.httpOptions);
-    }
-    
+    return this.http.post(`${baseUrl}/usuario/login`, loginFormData, this.httpOptions);
   }
 }
