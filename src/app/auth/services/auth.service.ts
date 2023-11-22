@@ -13,8 +13,9 @@ export class AuthService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     }),
+	  observe: 'response' as 'events',
   };
 
   constructor(

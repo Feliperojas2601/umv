@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         this.loginForm.reset();
         console.log(response);
-        this.presentSuccessAlert(response.msgError);
+        const token = response.headers.get('token') || '';
+        this.presentSuccessAlert(token);
         this.router.navigate(['/umv/consult']);
       },
       error: async (error) => {
@@ -42,7 +43,6 @@ export class LoginComponent implements OnInit {
         this.loginForm.reset();
         let message = '';
         if (error.status === 401){
-          //message = JSON.parse(error.error.respuesta[0].json).msgError;
           message = error.error.msgError;
         } else if (error.status === 0) {
           message = error.message;
@@ -75,10 +75,8 @@ export class LoginComponent implements OnInit {
       return 'El usuario no existe en el sistema.';
     } else if (message === 'Login Fallido Usuario o clave incorrectos.' || message === 'Usuario y/o clave incorrecta'){
       return 'Nombre de usuario o contraseña incorrectos.';
-    } else if (message === 'Http failure response for https://testfront.umv.gov.co/SiCapital-backend/api/usuario/login: 0 Unknown Error') {
-      return 'CORS error.';
     } else {
-      return 'Error desconocido.';
+      return 'Error desconocido: ' + message;
     }
   }
 
