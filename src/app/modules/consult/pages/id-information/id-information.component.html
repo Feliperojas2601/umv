@@ -5,10 +5,10 @@
   <div class="item-divider"></div>
   <ion-grid>
     <ion-row>
-      <ion-col size="3">
-        <b>Número de Placa</b>
+      <ion-col size="5">
+        <b>Número de placa</b>
       </ion-col>
-      <ion-col size="3">
+      <ion-col size="4">
         <b>Descripción</b>
       </ion-col>
       <ion-col size="3">
@@ -16,15 +16,15 @@
       </ion-col>
     </ion-row>
     <ion-row *ngFor="let record of listado">
-      <ion-col size="3">
+      <ion-col size="4">
         <p>{{record.numero_placa}}</p>
       </ion-col>
-      <ion-col size="3" class="wrapped-text">
+      <ion-col size="4" class="wrapped-text">
         <p>{{record.descripcion.substring(0,12)}}</p>
       </ion-col>
-      <ion-col size="3">
-        <ion-button (click)="getPlateInformation( record.numero_placa )">
-          <ion-icon  slot="start" src="../../../../../assets/images/buscar.png"></ion-icon>
+      <ion-col size="4">
+        <ion-button (click)="getPlateInformation(record.numero_placa)">
+          Consultar
         </ion-button>
       </ion-col>
     </ion-row>

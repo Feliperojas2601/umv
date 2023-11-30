@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
         const token = response.headers.get('token') || '';
         this.authService.saveToken(token);
         this.authService.saveLoginData(response.body.respuesta[0].login);
-        await this.presentSuccessAlert(token);
         this.router.navigate(['/umv/consult']);
       },
       error: async (error) => {

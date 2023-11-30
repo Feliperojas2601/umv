@@ -59,7 +59,6 @@ export class IdInformationComponent  implements OnInit {
     this.consultService.consultId(this.strPlaca).subscribe({
       next: async (response) => {
         loading.dismiss();
-        console.log(response.body);
         if (response.body.codError != 0) {
           await this.presentErrorAlert();
         } else {
