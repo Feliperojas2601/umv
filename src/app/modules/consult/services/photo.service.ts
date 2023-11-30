@@ -29,22 +29,7 @@ export class PhotoService {
       console.error('Error photo.service.ts addNewToGallery getPhoto 2: ', capturedPhoto);
       return;
     }
-
-    /*let savedPhoto;
-    try {
-      savedPhoto = await this.savePicture(capturedPhoto);
-    } catch (error) {
-      console.error('Error photo.service.ts addNewToGallery savePicture: ', error);
-      return;
-    }
-
-    if(!savedPhoto) {
-      console.error('Error photo.service.ts addNewToGallery savePicture 2: ', savedPhoto);
-      return;
-    }
-
-    const photoPath = savedPhoto.webviewPath || '';
-    */
+    
     const image = capturedPhoto.dataUrl || '';
     const text = await this.performOCR(image);
     return text;

@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ConsultService } from '../../services/consult.service';
 import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-plate-information',
-  templateUrl: './plate-information.component.html',
-  styleUrls: ['./plate-information.component.scss'],
+  selector: 'app-id-information',
+  templateUrl: './id-information.component.html',
+  styleUrls: ['./id-information.component.scss'],
 })
-export class PlateInformationComponent  implements OnInit {
+export class IdInformationComponent  implements OnInit {
 
   public selectedSegment: string = 'data';
   public strPlaca: any;
-  public strNumeroPlaca:any;
   public strId:any;
+  public strNumeroPlaca:any;
   public strdescripcion:any;
   public strtipoelemento:any;
   public strnumerovigencia:any;
@@ -38,30 +39,32 @@ export class PlateInformationComponent  implements OnInit {
   public strpiso:any;
   public strmodulo:any;
   public strpuesto:any;
+  public listado:any;
 
   constructor(
+    private route: ActivatedRoute,
     private consultService: ConsultService,
-    private route: ActivatedRoute, 
     private loadingController: LoadingController, 
-    private alertController: AlertController, 
-    private router: Router
-  ) { }
+    private alertController: AlertController,
+    private router: Router, 
+  ) {}
 
   async ngOnInit() {
     this.strPlaca =  this.route.snapshot.paramMap.get('id')?.toString();
     const loading = await this.loadingController.create({
-      message: 'Consultando la placa...',
+      message: 'Consultando el identificador...',
       duration: 30000,
     });
     loading.present();
-    this.consultService.consultPlate(this.strPlaca).subscribe({
+    this.consultService.consultId(this.strPlaca).subscribe({
       next: async (response) => {
         loading.dismiss();
+        console.log(response.body);
         if (response.body.codError != 0) {
           await this.presentErrorAlert();
         } else {
-          this.strNumeroPlaca=response.body.respuesta[0].numero_placa;
-          this.strId=response.body.respuesta[0].id;
+          this.listado = response.body.respuesta;
+          this.strNumeroPlaca=response.body.respuesta[0].codigo;
           this.strdescripcion=response.body.respuesta[0].descripcion;
           this.strtipoelemento=response.body.respuesta[0].tipo_elemento;
           this.strnumerovigencia=response.body.respuesta[0].numero_vigencia;
@@ -85,34 +88,32 @@ export class PlateInformationComponent  implements OnInit {
           this.strdependencia=response.body.respuesta[0].dependencia;
           this.strtiporesponsable=response.body.respuesta[0].tipo_responsable;
           this.strnumerovigencia=response.body.respuesta[0].numero_vigencia;
-          this.strinternofuncionarioresp=response.body.respuesta[0].interno_funcionario_resp;
-          this.strcodigoidentificacion=response.body.respuesta[0].codigo_identificacion;
-          this.strresponsable=response.body.respuesta[0].responsable;
-          this.strsede=response.body.respuesta[0].sede;
-          this.strpiso=response.body.respuesta[0].piso;
-          this.strmodulo=response.body.respuesta[0].modulo;
-          this.strpuesto=response.body.respuesta[0].puesto;
+          this.strestadoelemento=response.body.respuesta[0].estado_elemento;
         }
       }, 
-      error: async (error) => {
+      error: async (err) => {
+        console.log(err);
         loading.dismiss();
         await this.presentErrorAlert();
       }
-    });
+    });   
+  }
+
+  getPlateInformation(plateNumber: string): void {
+    this.router.navigate(['/umv/consult/plate-information',plateNumber]);
   }
 
   public async presentErrorAlert(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Error',
-      message: 'No se encontraron datos para la placa ingresada.',
+      message: 'No se encontraron datos para el identificador ingresado.',
       buttons: [{
         text: 'OK',
         handler: () => {
-          this.router.navigate(['/umv/consult/plate']);
+          this.router.navigate(['/umv/consult/id']);
         }
       }],
     });
     await alert.present();
   }
-
 }

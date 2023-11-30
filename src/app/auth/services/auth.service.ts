@@ -11,6 +11,9 @@ const baseUrl = environment.baseUrl;
 })
 export class AuthService {
 
+  private token!: string;
+  private loginData: any;
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,5 +31,21 @@ export class AuthService {
       usuario: loginForm.username,
     }
     return this.http.post(`${baseUrl}/usuario/login`, loginFormData, this.httpOptions);
+  }
+
+  public getToken(): string {
+    return this.token;
+  }
+
+  public saveToken(token: string) {
+    this.token = token;
+  }
+
+  public getLoginData(): any {
+    return this.loginData;
+  }
+
+  public saveLoginData(loginData: any) {
+    this.loginData = loginData;
   }
 }

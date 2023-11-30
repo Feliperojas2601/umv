@@ -31,16 +31,18 @@ export class LoginComponent implements OnInit {
   public async loginUser(): Promise<void> {
     this.loginFormValue = this.loginForm.value as LoginForm;
     this.authService.login(this.loginFormValue).subscribe({
-      next: (response) => {
+      next: async (response) => {
         this.loginForm.reset();
-        console.log(response);
         const token = response.headers.get('token') || '';
-        this.presentSuccessAlert(token);
+        this.authService.saveToken(token);
+        this.authService.saveLoginData(response.body.respuesta[0].login);
+        await this.presentSuccessAlert(token);
         this.router.navigate(['/umv/consult']);
       },
       error: async (error) => {
-        console.log(error);
-        this.loginForm.reset();
+        this.loginForm.patchValue({
+          password: ''
+        });
         let message = '';
         if (error.status === 401){
           message = error.error.msgError;

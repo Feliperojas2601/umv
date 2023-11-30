@@ -6,71 +6,247 @@
   <ion-card-content class="ion-padding-top">
     <ion-segment [(ngModel)]="selectedSegment">
       <ion-segment-button value="data">
-        <ion-label>Datos</ion-label>
+        <ion-label>Datos Generales</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="responsible">
-        <ion-label>Responsable</ion-label>
+      <ion-segment-button value="elemento">
+        <ion-label>Detalle Elemento</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="history">
-        <ion-label>Historial</ion-label>
+      <ion-segment-button value="responsable">
+        <ion-label>Datos Responsable</ion-label>
       </ion-segment-button>
-    </ion-segment>
+    </ion-segment>    
     <div *ngIf="selectedSegment === 'data'">
-      <div class="border-medium">
-        <ion-grid>
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>Código placa</ion-label>
-            </ion-col>
-            <ion-col size="6">
-              <p>123456789</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>Nombre</ion-label>
-            </ion-col>
-            <ion-col size="6">
-              <p>Silla giratoria</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>Grupo</ion-label>
-            </ion-col>
-            <ion-col size="6">
-              <p>Muebles</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>Fecha de ingreso</ion-label>
-            </ion-col>
-            <ion-col size="6">
-              <p>17/08/2020</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>Vida útil</ion-label>
-            </ion-col>
-            <ion-col size="6">
-              <p>10 años</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="6">
-              <ion-label>Tiempo restante</ion-label>
-            </ion-col>
-            <ion-col size="6">
-              <p>7 años</p>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <div class="border-medium">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>Número de Placa</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{ strNumeroPlaca  }}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>ID</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strId}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>DESCRIPCIÓN</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{ strdescripcion }}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>TIPO ELEMENTO</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{ strtipoelemento }}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>NUMERO VIGENCIA</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strnumerovigencia}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>NUMERO INGRESO</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strnumeroingreso}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>VALOR HISTORICO</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strvalorhistorico}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>CANTIDAD VIDA ÚTIL</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strcantidadvidautil}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>FECHA SERVICIO</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{ strfechaservicio }} </p>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
       </div>
-      <div class="ion-padding-bottom ion-padding-top ion-text-center">
-        <ion-button [routerLink]="['/umv/consult/plate']" type="submit">Nueva consulta</ion-button>
+
+      <div *ngIf="selectedSegment === 'elemento'">
+        <div class="border-medium">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>UBICACIÓN</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strubicacion}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>CUENTA CONTABLE</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strcuentacontable}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>NÚMERO SERIAL</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strnumeroserial}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>MARCA</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strmarca}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>MODELO</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strmodelo}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>REFERENCIA</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strreferencia}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6">
+                <ion-label>ESTADO ELEMENTO</ion-label>
+              </ion-col>
+              <ion-col size="6">
+                <p>{{strestadoelemento}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
       </div>
-    </div>
+
+
+      <div *ngIf="selectedSegment === 'responsable'">
+          <div class="border-medium">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>CÓDIGO</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strcodigo}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>DEPENDENCIA</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strdependencia}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>TIPO RESPONSABLE</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strtiporesponsable}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>INTERNO FUNCIONARIO RESP</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strinternofuncionarioresp}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>CÓDIGO IDENTIFICACIÓN</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strcodigoidentificacion}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>RESPONSABLE</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strresponsable}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>SEDE</ion-label>
+                </ion-col>
+                <ion-col size="6">
+                  <p>{{strsede}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>PISO</ion-label>
+                </ion-col>
+                <ion-col size="6"  class="texto">
+                  <p>{{strpiso}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>MODULO</ion-label>
+                </ion-col>
+                <ion-col size="6"  class="texto">
+                  <p>{{strmodulo}}</p>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="6">
+                  <ion-label>PUESTO</ion-label>
+                </ion-col>
+                <ion-col size="6" class="texto">
+                  <p>{{strpuesto}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        <div class="ion-padding-bottom ion-padding-top ion-text-center">
+          <ion-button [routerLink]="['/umv/consult/plate']" type="submit">Nueva consulta</ion-button>
+        </div>
+      </div>
   </ion-card-content>
 </ion-card>

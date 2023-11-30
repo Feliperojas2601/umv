@@ -4,6 +4,7 @@ import { ConsultComponent } from './consult.component';
 import { PlateComponent } from './pages/plate/plate.component';
 import { IdComponent } from './pages/id/id.component';
 import { PlateInformationComponent } from './pages/plate-information/plate-information.component';
+import { IdInformationComponent } from './pages/id-information/id-information.component';
 
 const routes: Routes = [
     { 
@@ -22,6 +23,10 @@ const routes: Routes = [
         path: 'plate-information/:id',
         component: PlateInformationComponent,
     },
+    {
+        path: 'id-information/:id',
+        component: IdInformationComponent,
+    }
 ];
 
 @NgModule({    

@@ -12,9 +12,6 @@ import { LoadingController } from '@ionic/angular';
 export class PlateComponent  implements OnInit {
 
   public plateForm!: FormGroup; 
-
-  public plateFormValue!: string;
-
   public text: string | void = '';
 
   constructor(
@@ -31,8 +28,8 @@ export class PlateComponent  implements OnInit {
   }
 
   public consultPlate(): void {
-    this.plateFormValue = this.plateForm.value as string;
-    this.router.navigate(['/umv/consult/plate-information', 1]);
+    this.router.navigate(['/umv/consult/plate-information', this.plateForm.get('plate')?.value]);
+    this.plateForm.reset();
   }
 
   public async scan(): Promise<void> {
@@ -41,7 +38,6 @@ export class PlateComponent  implements OnInit {
     if (!this.text) {
       this.text = '';
     }
-    // deja texto con solo caracteres numericos
     this.text = this.text.replace(/[^0-9]/g, '');
     await this.loadingCtrl.dismiss();
     this.plateForm.patchValue({

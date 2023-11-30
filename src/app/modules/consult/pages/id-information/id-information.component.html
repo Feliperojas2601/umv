@@ -1,0 +1,32 @@
+<ion-card>
+  <ion-card-header class="ion-align-items-center ion-justify-content-center">
+    <ion-card-title>Consulta por Identificación</ion-card-title>
+  </ion-card-header>
+  <div class="item-divider"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <b>Número de Placa</b>
+      </ion-col>
+      <ion-col size="3">
+        <b>Descripción</b>
+      </ion-col>
+      <ion-col size="3">
+          <b>Acción</b>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let record of listado">
+      <ion-col size="3">
+        <p>{{record.numero_placa}}</p>
+      </ion-col>
+      <ion-col size="3" class="wrapped-text">
+        <p>{{record.descripcion.substring(0,12)}}</p>
+      </ion-col>
+      <ion-col size="3">
+        <ion-button (click)="getPlateInformation( record.numero_placa )">
+          <ion-icon  slot="start" src="../../../../../assets/images/buscar.png"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

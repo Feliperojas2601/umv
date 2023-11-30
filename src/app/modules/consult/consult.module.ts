@@ -7,6 +7,7 @@ import { IdComponent } from './pages/id/id.component';
 import { PlateComponent } from './pages/plate/plate.component';
 import { PlateInformationComponent } from './pages/plate-information/plate-information.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IdInformationComponent } from './pages/id-information/id-information.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IdComponent, 
     PlateComponent, 
     PlateInformationComponent,
+    IdInformationComponent,
   ],
   imports: [
     CommonModule, 
